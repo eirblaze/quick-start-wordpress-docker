@@ -1,0 +1,33 @@
+{
+    // IntelliSense を使用して利用可能な属性を学べます。
+    // 既存の属性の説明をホバーして表示します。
+    // 詳細情報は次を確認してください: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        // {
+        //     "type": "firefox",
+        //     "request": "launch",
+        //     "reAttach": true,
+        //     "name": "Launch localhost",
+        //     "url": "http://localhost:8080/index.php",
+        //     "webRoot": "${workspaceFolder}/public"
+        // },
+        {
+            "name": "Listen for XDebug",
+            "type": "php",
+            "request": "launch",
+            "port": 9001, // エディタ側から、Docker側に対して公開しているポート番号
+            "pathMappings": {
+                "/var/www/html" : "${workspaceFolder}/public"
+            }
+        },
+        // {
+        //     "name": "Launch currently open script",
+        //     "type": "php",
+        //     "request": "launch",
+        //     "program": "${file}",
+        //     "cwd": "${fileDirname}",
+        //     "port": 9001
+        // }
+    ]
+}

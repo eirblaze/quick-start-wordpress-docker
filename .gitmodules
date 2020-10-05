@@ -1,0 +1,9 @@
+[submodule "docker-lftp-cron-sync"]
+	path = docker-lftp-cron-sync
+	url = git@github.com:eirblaze/docker-lftp-cron-sync.git
+[submodule "wp-test-theme"]
+	path = public/wp-content/themes/wp-test-theme
+	url = git@github.com:eirblaze/wp-test-theme.git
+[submodule "hello-plugin"]
+	path = public/wp-content/plugins/hello-plugin
+	url = git@github.com:eirblaze/wordpress-hello-plugin.git

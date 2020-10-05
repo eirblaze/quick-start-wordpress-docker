@@ -2,13 +2,13 @@ global:
   sql_adapter: default
 
 local:
-  vhost: "http://localhost:<%= ENV['LOCAL_SERVER_PORT'] %>"
+  vhost: "https://localhost"
   wordpress_path: "/var/www/html/"
   database:
-    name: "wordpress"
-    user: "root"
-    password: "wordpress"
-    host: "database"
+    name: "<%= ENV['MYSQL_DATABASE'] %>"
+    user: "<%= ENV['MYSQL_USER'] %>"
+    password: "<%= ENV['MYSQL_PASSWORD'] %>"
+    host: "<%= ENV['LOCAL_DB_HOST'] %>"
 
 production:
   vhost: "<%= ENV['PRODUCTION_URL'] %>"
@@ -40,8 +40,9 @@ production:
     - "wp-content/uploads/backwpup*/*"
     - ".htaccess"
 
-  ssh:
-    host: "<%= ENV['PRODUCTION_SSH_HOST'] %>"
-    user: "<%= ENV['PRODUCTION_SSH_USER'] %>"
-    port: "<%= ENV['PRODUCTION_SSH_PORT'] %>"
-    rsync_options: "--verbose"
+  ftp:
+    host: "<%= ENV['PRODUCTION_FTP_HOST'] %>"
+    user: "<%= ENV['PRODUCTION_FTP_USER'] %>"
+    password: "<%= ENV['PRODUCTION_FTP_PASSWORD'] %>"
+    passive: true
+    scheme: "ftps"

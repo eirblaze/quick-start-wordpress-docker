@@ -1,0 +1,151 @@
+{
+    // See https://go.microsoft.com/fwlink/?LinkId=733558
+    // for the documentation about the tasks.json format
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "echo env",
+            "detail": "環境変数を確認します。",
+            "type": "shell",
+            "command": "echo",
+            "args": [
+                "workspaceFolder: ${workspaceFolder}",
+                "workspaceRoot: ${workspaceRoot}",
+                "PRODUCTION_NAME: ${env:PRODUCTION_NAME}",
+                "env:USERNAME : ${env:USERNAME}",
+            ],
+            "problemMatcher": [] // スキャン設定
+        },
+        {
+            "label": "edit hosts",
+            "detail": "hostsを書き換えます",
+            "type": "shell",
+            "command": "powershell -NoProfile -ExecutionPolicy unrestricted -Command start notepad '$env:windir\\System32\\drivers\\etc\\hosts -verb runas'",
+            "args": [
+                // "start notepad $env:windir\\System32\\drivers\\etc\\hosts -verb runas"
+            ],
+            "problemMatcher": [] // スキャン設定
+        },
+        {
+            "label": "docker compose setup",
+            "detail": "関連コンテナをセットアップ、または再構成しながら、起動します。",
+            "type": "shell",
+            "command": "docker-compose up -d --build",
+            "problemMatcher": [],
+            "group": {
+                "kind": "test",
+                "isDefault": true
+            }
+        },
+        {
+            "label": "docker compose up monitor",
+            "detail": "関連コンテナを起動します。ログも映します。",
+            "type": "shell",
+            "command": "docker-compose up",
+            "problemMatcher": [],
+            "group": {
+                "kind": "test",
+                "isDefault": true
+            }
+        },
+        {
+            "label": "docker compose start",
+            "detail": "セットアップ済みの関連コンテナを起動します。",
+            "type": "shell",
+            "command": "docker-compose start",
+            "problemMatcher": [],
+            "group": {
+                "kind": "test",
+                "isDefault": true
+            }
+        },
+        {
+            "label": "docker compose stop",
+            "detail": "関連コンテナを停止します。",
+            "type": "shell",
+            "command": "docker-compose stop",
+            "problemMatcher": [],
+            "group": {
+                "kind": "test",
+                "isDefault": true
+            }
+        },
+        {
+            "label": "wordmove, wp-cli",
+            "detail": "wordpressをコマンドラインから操作します。",
+            "type": "shell",
+            "command": "docker-compose run --rm wordmove ash",
+            "problemMatcher": [],
+            "group": {
+                "kind": "test",
+                "isDefault": true
+            }
+        },
+        {
+            "label": "DB バックアップ",
+            "detail": "wordpress の DB を、リポジトリ作業フォルダの ./db/dump.sql に出力してバックアップします。",
+            "type": "shell",
+            "command": "docker-compose run --rm wordmove wp db export /root/db/dump.sql",
+            "problemMatcher": [],
+            "group": {
+                "kind": "test",
+                "isDefault": true
+            }
+        },
+        {
+            "label": "DB リストア",
+            "detail": "wordpress の DB を、リポジトリ作業フォルダの ./db/dump.sql からリストアします。",
+            "type": "shell",
+            "command": "docker-compose run --rm wordmove wp db import /root/db/dump.sql",
+            "problemMatcher": [],
+            "group": {
+                "kind": "test",
+                "isDefault": true
+            }
+        },
+        {
+            "label": "Docker コンテナ情報",
+            "detail": "コンテナの一覧を表示します。",
+            "type": "shell",
+            "command": "docker container ls",
+            "problemMatcher": [],
+            "group": {
+                "kind": "test",
+                "isDefault": true
+            }
+        },
+        {
+            "label": "wordpress DB mysql",
+            "detail": "DB コンテナでmysqlコマンドを直接実行します。",
+            "type": "shell",
+            "command": "docker-compose exec database mysql -u root -pwordpress",
+            "problemMatcher": [],
+            "group": {
+                "kind": "test",
+                "isDefault": true
+            }
+        },
+        {
+            "label": "XDebug log",
+            "detail": "PHPデバッガーのログの最後のほうを取得します。",
+            "type": "shell",
+            "command": "docker-compose exec wp-fpm tail /tmp/xdebug.log",
+            "problemMatcher": [],
+            "group": {
+                "kind": "test",
+                "isDefault": true
+            }
+        },
+        {
+            "label": "PHP log",
+            "detail": "PHPのログの最後のほうを取得します。",
+            "type": "shell",
+            "command": "docker-compose exec wp-fpm tail /tmp/php_debug.log",
+            "problemMatcher": [],
+            "group": {
+                "kind": "test",
+                "isDefault": true
+            }
+        },
+    ]
+}
